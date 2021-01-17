@@ -1,7 +1,7 @@
 package command
 
 type CommandManager interface {
-	Start(filePath string)
+	Start(filePath string) error
 	Handle(cmd Command) bool
 }
 

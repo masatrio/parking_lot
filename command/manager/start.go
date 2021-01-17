@@ -10,7 +10,7 @@ import (
 	"github.com/masatrio/parking_lot/command/core"
 )
 
-func (c *cmdMgr) Start(filePath string) {
+func (c *cmdMgr) Start(filePath string) error {
 	var (
 		command      string
 		err          error
@@ -23,7 +23,7 @@ func (c *cmdMgr) Start(filePath string) {
 		readFromFile = true
 		file, err := os.Open(filePath)
 		if err != nil {
-			panic(err)
+			return err
 		}
 
 		defer file.Close()
@@ -47,7 +47,7 @@ func (c *cmdMgr) Start(filePath string) {
 
 		} else {
 			if command, err = reader.ReadString('\n'); err != nil {
-				fmt.Println(err)
+				break
 			}
 		}
 
@@ -66,5 +66,7 @@ func (c *cmdMgr) Start(filePath string) {
 		cmd.Print()
 
 	}
+
+	return err
 
 }

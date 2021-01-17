@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"os"
 
 	"github.com/masatrio/parking_lot/command"
@@ -30,5 +31,7 @@ func init() {
 }
 
 func main() {
-	cmdMgr.Start(filePath)
+	if err := cmdMgr.Start(filePath); err != nil {
+		log.Fatal(err)
+	}
 }
